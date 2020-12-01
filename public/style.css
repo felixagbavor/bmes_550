@@ -1,0 +1,28 @@
+html,body {
+    background-image: url("img/background.jpg");
+    height:100%;
+    
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+body {
+    display:flex;
+}
+
+h1 {
+    color : #000000;
+    text-align : center;
+    font-family: "SIMPSON";
+}
+form {
+    margin: auto;
+}
+
+label {
+    color: rgb(238, 36, 228);
+    font-weight: bold;
+}
