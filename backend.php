@@ -107,7 +107,7 @@ function lookup_past_results($pdo, $table_name, $user) {
 # tmp image path to python
 # running python code
 
-function call_image_processor($img_path){
+function call_image_processor($img_path,$username){
     $command = "python3 ../processing/main.py ".$img_path." 2>&1";
     $output = shell_exec($command); //output is going to be file paths of image two processed CT scans
 
