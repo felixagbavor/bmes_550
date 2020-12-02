@@ -57,17 +57,17 @@ function check_duplicate_value_and_add($pdo, $table_name, $user, $file_id, $uplo
 // returns a list of DISTINCT names if the name is not found in the table
 
 ####################################################
-# create table
-create_db_table_if_not_exist($pdo=$db, $table_to_create=$new_table);
+// # create table
+// create_db_table_if_not_exist($pdo=$db, $table_to_create=$new_table);
 
-# add entry to database
-check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
+// # add entry to database
+// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
 
-# add duplicate entry
-check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
+// # add duplicate entry
+// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
 
-# add new unique entry
-check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user='MF', $file_id='sample2.png', $upload_datetime='2013-10-07 08:23:19.120');
+// # add new unique entry
+// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user='MF', $file_id='sample2.png', $upload_datetime='2013-10-07 08:23:19.120');
 
 # retieve all values that match a user
 function retrieve_user_images($pdo, $table_name, $user) {
@@ -101,10 +101,19 @@ function lookup_past_results($pdo, $table_name, $user) {
     }
 }
 
-$result = lookup_past_results($pdo=$db, $table_name=$table_to_create, $user='J');
-print_r($result);
+// $result = lookup_past_results($pdo=$db, $table_name=$table_to_create, $user='J');
+// print_r($result);
 
 # tmp image path to python
 # running python code
+
+function call_image_processor($img_path){
+    $command = "python3 ../processing/main.py ".$img_path." 2>&1";
+    $output = shell_exec($command); //output is going to be file paths of image two processed CT scans
+
+    //call database function to store output image here
+
+    return $output;
+}
 
 ?>
