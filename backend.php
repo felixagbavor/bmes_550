@@ -108,7 +108,7 @@ function lookup_past_results($pdo, $table_name, $user) {
 # running python code
 
 #TODO: extract this programmatically
-$python = "C:/Users/agbav/AppData/Local/Programs/Python/Python39/python.exe";
+$python = "C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe";
 
 function call_image_processor($img_path,$username){
     $command = $python." ..\processing\main.py ".$img_path." 2>&1";

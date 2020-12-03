@@ -5,15 +5,16 @@ import numpy as np
 from pydicom import dcmread
 from matplotlib import pyplot as plt
 from transform_to_hu import transform_to_hu
+from segment_lung_mask import segment_lung_mask
 import cv2
+
 image_path = sys.argv[1].strip()
-
-dmc_filename = image_path.split("/")[-1]
-png_filename = dmc_filename.split(".")[0]
-
 dcimage = dcmread(image_path)
-# testing
-image_hu = transform_to_hu(dcimage)
-isWritten = cv2.imwrite('../uploads/test.png', image_hu)
-plt.imshow(image_hu,cmap=plt.cm.bone)
-plt.show()
+dmc_filename = image_path.split("/")[-1]
+
+# processing
+processed_image = segment_lung_mask(transform_to_hu(dcimage))
+isWritten = cv2.imwrite('../uploads/test.png', processed_image)
+os.remove('../temp_uploads/'+dmc_filename)
+
+print('../uploads/test.png')
