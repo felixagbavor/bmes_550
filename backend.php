@@ -9,22 +9,6 @@ $dbfile=__DIR__.'/test.sqlite'; # if you are using a large database file (> 10 M
 $db = new PDO("sqlite:$dbfile");
 $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-// /**
-//  * Check if a table exists in the current PDO database instance.
-//  * @param PDO $pdo PDO instance connected to a database.
-//  * @param string $table_name table to search for.
-//  * @return bool TRUE if table exists, FALSE if the table does not exist.
-//  */
-
-# get temp file path and pass to python
-
-# the table will be hardcoded, the rest will be retrieved from a GET request
-# TODO: get inputs (user and file_id) from GET request
-$test_upload_datetime = date('Y-m-d H:i:s', time());
-$test_file_id = 'test6';
-$test_user = 'MattFalcione';
-$new_table = 'test4';
-
 # create database table if it does not already exist
 function create_db_table_if_not_exist($pdo, $table_to_create){
     $pdo->exec("CREATE TABLE IF NOT EXISTS '$table_to_create' (
@@ -32,7 +16,7 @@ function create_db_table_if_not_exist($pdo, $table_to_create){
         file_id VARCHAR(50),
         upload_datetime TEXT,
         PRIMARY KEY (user, file_id)
-        )");
+    )");
 }
 
 //  adds entry to table
@@ -53,24 +37,9 @@ function check_duplicate_value_and_add($pdo, $table_name, $user, $file_id, $uplo
     }
 }
 
-// function to retrieve name and list of corresponding values in table
-// returns a list of DISTINCT names if the name is not found in the table
-
-####################################################
-// # create table
-// create_db_table_if_not_exist($pdo=$db, $table_to_create=$new_table);
-
-// # add entry to database
-// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
-
-// # add duplicate entry
-// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
-
-// # add new unique entry
-// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user='MF', $file_id='sample2.png', $upload_datetime='2013-10-07 08:23:19.120');
-
 # retieve all values that match a user
 function retrieve_user_images($pdo, $table_name, $user) {
+    
     $result = $pdo->query("SELECT * FROM '$table_name' WHERE user='$user'")->fetchAll();
     return $result;
 }
@@ -89,7 +58,7 @@ function list_distinct_users($pdo, $table_name) {
 }
 
 # lookup past results
-function lookup_past_results($pdo, $table_name, $user) {
+function lookup_past_results($table_name, $user) {
     $result = check_user_in_db($pdo=$pdo, $table_name=$table_name, $user=$user);
     if (boolval($result)){
         $result = retrieve_user_images($pdo=$pdo, $table_name=$table_name, $user=$user);
@@ -101,20 +70,49 @@ function lookup_past_results($pdo, $table_name, $user) {
     }
 }
 
-// $result = lookup_past_results($pdo=$db, $table_name=$table_to_create, $user='J');
-// print_r($result);
-
-# tmp image path to python
-# running python code
-
 #TODO: extract this programmatically
 $python = "C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe";
 
 function call_image_processor($img_path,$username){
+       
+    $db = new PDO("sqlite:$dbfile");
+    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    
     $command = $python." ..\processing\main.py ".$img_path." 2>&1";
     $output = shell_exec($command); //output is going to be file paths of image two processed CT scans
+
+    $arr = explode(":",$output);
+    $upload_datetime = date('Y-m-d H:i:s', time());
+    $table = 'images';
+    $file = "";
+    create_db_table_if_not_exist($pdo=$db, $table_to_create=$table);
+    for($i=0;$i<2;$i++){
+        $file = $arr[$i]; 
+        check_duplicate_value_and_add($pdo=$db, $table_name=$table, $user=$username, $file_id=$file, $upload_datetime=$upload_datetime);
+    }
+
+    
+
+    
     //call database function to store output image here
     return $output;
 }
+
+
+// function to retrieve name and list of corresponding values in table
+// returns a list of DISTINCT names if the name is not found in the table
+
+####################################################
+// # create table
+// create_db_table_if_not_exist($pdo=$db, $table_to_create=$new_table);
+
+// # add entry to database
+// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
+
+// # add duplicate entry
+// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user=$test_user, $file_id=$test_file_id, $upload_datetime=$test_upload_datetime);
+
+// # add new unique entry
+// check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user='MF', $file_id='sample2.png', $upload_datetime='2013-10-07 08:23:19.120');
 
 ?>

@@ -1,17 +1,4 @@
-html,body {
-    background-image: url("img/background.jpg");
-    height:100%;
-    
-    margin: 0;
-    padding: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
-}
-body {
-    display:flex;
-}
 
 h1 {
     color : #000000;
@@ -26,3 +13,20 @@ label {
     color: rgb(245, 212, 26);
     font-weight: bold;
 }
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

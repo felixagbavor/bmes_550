@@ -1,7 +1,6 @@
 # main script for image processing
 import sys
-import os.path
-import numpy as np
+import os
 from pydicom import dcmread
 from matplotlib import pyplot as plt
 from transform_to_hu import transform_to_hu
@@ -14,7 +13,19 @@ dmc_filename = image_path.split("/")[-1]
 
 # processing
 processed_image = segment_lung_mask(transform_to_hu(dcimage))
-isWritten = cv2.imwrite('../uploads/test.png', processed_image)
 os.remove('../temp_uploads/'+dmc_filename)
 
-print('../uploads/test.png')
+processed_path = '../uploads/{0}_processed.png'.format(dmc_filename)
+
+plt.imshow(processed_image,cmap='jet')
+plt.savefig(processed_path)
+
+plt.close()
+
+original_path = '../uploads/{0}_original.png'.format(dmc_filename)
+plt.imshow(dcimage.pixel_array,cmap=plt.cm.gray)
+plt.savefig(original_path)
+
+plt.close()
+
+print("{0}:{1}".format(original_path,processed_path))
