@@ -1,3 +1,5 @@
+# Felix Agbavor
+
 import numpy as np
 from skimage import measure, morphology
 from sklearn.cluster import KMeans
@@ -20,7 +22,7 @@ def segment_lung_mask(img, display=False):
     img[img==min]=mean
 
     kmeans = KMeans(n_clusters=2).fit(np.reshape(middle,[np.prod(middle.shape),1]))
-    
+
     centers = sorted(kmeans.cluster_centers_.flatten())
     threshold = np.mean(centers)
     thresh_img = np.where(img<threshold,1.0,0.0)  # threshold the image

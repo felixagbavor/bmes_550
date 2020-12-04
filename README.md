@@ -29,3 +29,7 @@ pendingDeletions = new SQLiteCommand(@"DELETE FROM [centres] WHERE [name] = $nam
 `foreach (string name in selected) { pendingDeletions.Parameters.AddWithValue("$name", centre.Name); pendingDeletions.ExecuteNonQuery(); }`
 
 `sql = "select exists(SELECT * from USERS where PASSWORD = ? AND USERNAME = ?)" args = (var1,var2) cursor = database_connection.execute(sql, args)`# bmes_550
+
+### Runing the Code
+
+

@@ -74,10 +74,11 @@ function lookup_past_results($table_name, $user) {
 $python = "C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe";
 
 function call_image_processor($img_path,$username){
-       
+    $dbfile=__DIR__.'/test.sqlite';
+    
     $db = new PDO("sqlite:$dbfile");
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    
+
     $command = $python." ..\processing\main.py ".$img_path." 2>&1";
     $output = shell_exec($command); //output is going to be file paths of image two processed CT scans
 

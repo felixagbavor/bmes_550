@@ -1,1 +1,5 @@
  pydicom==2.1.1
+ numpy==1.19.4
+ matplotlib==3.3.3
+ skimage==0.17.2
+ sklearn==0.23.2

@@ -20,14 +20,20 @@
     <p style="text-align:center;font-size:200%">Hello <b><?php echo $username ?></b></p>
     <p style="text-align:center;font-size:120%">Here are your previous results</p>
 
-    <table>
+    <table id="customers">
         <tr>
             <th>Image</th>
             <th>Date processed</th>
         </tr>
             <?php foreach($results as $row): ?>
         <tr>
-            <td><a href="<?php print $row["file_id"]; ?>" download> <?php print $row["file_id"]; ?> </a></td>
+            <td><a href="<?php print $row["file_id"]; ?>" download> 
+            <?php
+             $filepath = $row["file_id"];
+             $arr = explode("/",$filepath); 
+             print $arr[2];
+            ?> 
+             </a></td>
             <td><?php print $row["upload_datetime"]; ?></td>
         </tr>
         <?php endforeach; ?>
