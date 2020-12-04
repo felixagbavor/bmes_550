@@ -4,6 +4,11 @@
 # TODO: find BMES tempdir using php
 $dbfile=__DIR__.'/test.sqlite'; # if you are using a large database file (> 10 MB), please keep it elsewhere on your computer.
 
+# create processed image directory if missing
+if (!file_exists('Processed_Files/')) {
+    mkdir('Processed_Files/');
+}
+
 ####################################################
 # create database connection
 $db = new PDO("sqlite:$dbfile");
@@ -73,6 +78,15 @@ function lookup_past_results($table_name, $user) {
 #TODO: extract this programmatically
 $python = "C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe";
 
+# TODO: Test anaconda python path
+// $PYEXE='python';
+// if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+// 	if(file_exists($try='C:\ProgramData\Anaconda3\python.exe')) $PYEXE=$try;
+// }
+// else{
+// 	#On MAC, python is probably on the path already. So, nothing to do.
+// }
+
 function call_image_processor($img_path,$username){
     $dbfile=__DIR__.'/test.sqlite';
     
@@ -115,5 +129,32 @@ function call_image_processor($img_path,$username){
 
 // # add new unique entry
 // check_duplicate_value_and_add($pdo=$db, $table_name=$new_table, $user='MF', $file_id='sample2.png', $upload_datetime='2013-10-07 08:23:19.120');
+
+# HTML/php front end -> pass image id and user directly to db (since we already know the filename format) in try catch statement
+# Before running put if statment to check if value already in the database
+# inside of statement would be the processing of files and storing of images
+
+# when retrieving the user, there should be a scrolling drop down menu
+
+// echo "<br>";
+// $filename_username = 'sample1_user1';
+// echo "Processed_Files/{$filename_username}.png"
+
+// $PYEXE='python';
+// if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+//     if(file_exists($try='C:\Users\matth\Anaconda3\python.exe')) $PYEXE=$try;
+// }
+// else{
+//     // On MAC, python is probably on the path already. So, nothing to do.
+// }
+// $cmd="\"$PYEXE\" C:\Users\matth\Dropbox\bmes550.MatthewFalcione.mjf378\web\prostaterisk.py ".escapeshellarg($_REQUEST['history'])." ".escapeshellarg($_REQUEST['europe'])." ".escapeshellarg($_REQUEST['ar_ggc'])." ".escapeshellarg($_REQUEST['haplotype']);
+// // echo "Running command: $cmd";
+
+// exec($cmd, $out);
+// $out = implode("\n", $out);
+
+// // echo "<pre>"; print_r($out); echo "</pre>";
+
+// echo "Your risk of prostate cancer is: <b>$out<b>";
 
 ?>
