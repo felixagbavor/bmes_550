@@ -78,6 +78,15 @@ function lookup_past_results($table_name, $user) {
 #TODO: extract this programmatically
 $python = "C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe";
 
+# TODO: Test anaconda python path
+// $PYEXE='python';
+// if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+// 	if(file_exists($try='C:\ProgramData\Anaconda3\python.exe')) $PYEXE=$try;
+// }
+// else{
+// 	#On MAC, python is probably on the path already. So, nothing to do.
+// }
+
 function call_image_processor($img_path,$username){
        
     $db = new PDO("sqlite:$dbfile");
@@ -126,9 +135,9 @@ function call_image_processor($img_path,$username){
 
 # when retrieving the user, there should be a scrolling drop down menu
 
-echo "<br>";
-$filename_username = 'sample1_user1';
-echo "Processed_Files/{$filename_username}.png"
+// echo "<br>";
+// $filename_username = 'sample1_user1';
+// echo "Processed_Files/{$filename_username}.png"
 
 // $PYEXE='python';
 // if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
