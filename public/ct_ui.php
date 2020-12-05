@@ -17,6 +17,17 @@
             display:flex;
         }
     </style>
+<?php
+		include "../backend.php";
+        $dbfile='../test.sqlite'; 
+        ####################################################
+        # create database connection
+        $db = new PDO("sqlite:$dbfile");
+		$table = "images";
+        $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+		$users = list_distinct_users($pdo=$db,$table_name=$table);
+		print_r($users[2][0]);
+?>
 </head>
 <body>
     
@@ -27,7 +38,7 @@
         <label>retrieve previous results?</label>
         <input type="checkbox" id="retrieve" name="previous_results"><br><br>
         <input type='file' id="image" name="myfile" required/>
-
+		
         <input type="submit" value="submit" name="submit">
     </form>
 </body>
