@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         html,body {
-            background-image: url("img/background.jpg");
+            background-color: white;
             height:100%;
             
             margin: 0;
