@@ -33,7 +33,12 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <label>Username: </label>
+        <label>Select User: </label>
+		<select name="users" id="users">
+			<?php
+				foreach($users as $u):
+					
+			?>
         <input type="text" name="user_name" placeholder="Enter your username" required/><br/><br/>
         <label>retrieve previous results?</label>
         <input type="checkbox" id="retrieve" name="previous_results"><br><br>
