@@ -33,15 +33,16 @@
 </body>
 
 <script>
-    // var chbox = document.getElementById("retrieve");
-    // chbox.addEventListener("click",function(event){
-    //     console.log(chbox.checked);
-    //     if(chbox.checked){
-    //         document.getElementById("image").style.display = false;
-    //     } else{
-    //         document.getElementById("image").hidden = true
-    //     }
-    // })
+    var chbox = document.getElementById("retrieve");
+    chbox.addEventListener("click",function(event){
+
+        if(chbox.checked){
+            document.getElementById("image").required = false;
+        } else{
+            document.getElementById("image").required = true;
+        }
+       
+    })
     
 </script>
 

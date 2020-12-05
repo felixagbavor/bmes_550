@@ -16,6 +16,7 @@ dmc_filename = image_path.split("/")[-1]
 # processing
 processed_image = segment_lung_mask(transform_to_hu(dcimage))
 os.remove('../temp_uploads/'+dmc_filename)
+#TODO: generate random names for file
 
 processed_path = '../uploads/{0}_processed.png'.format(dmc_filename)
 
