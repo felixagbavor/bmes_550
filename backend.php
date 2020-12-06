@@ -37,7 +37,6 @@ function check_duplicate_value_and_add($pdo, $table_name, $user, $file_id, $uplo
         return TRUE;
     } else {
         add_entry_to_table($pdo=$pdo, $table_name=$table_name, $user=$user, $file_id=$file_id, $upload_datetime=$upload_datetime);
-        echo 'New entry added.'."<br>";
         return False;
     }
 }

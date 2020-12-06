@@ -50,19 +50,20 @@
             arr.push(array_users[i][0])
         }
         var prev = document.forms["myform"]["previous_results"].checked;
-    
-        console.log(arr[x])
 
         if (x == "") {
-            alert("Name must be filled out");
+            alert("Error: Name must be filled out");
             return false;
         }
         else if(containsSpecialCharacters(x)){
-            alert("user name cannot contain any special characters");
+            alert("Error: username cannot contain any special characters");
             return false
         }
         else if(!arr.includes(x) && prev){
-            alert("username doesnt exists");
+            alert("Error: username doesnt exists");
+            return false;
+        } else if(document.forms["myform"]["myfile"].value.split('.').pop().toLowerCase() != "dcm"){
+            alert("Error: only .dcm files allowed");
             return false;
         }
     }
