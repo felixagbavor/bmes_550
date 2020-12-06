@@ -32,4 +32,11 @@ pendingDeletions = new SQLiteCommand(@"DELETE FROM [centres] WHERE [name] = $nam
 
 ### Runing the Code
 
+Install project dependencies
+`pip install -r requirements.txt`
+
+Add your full python.exe path to pythonexe.txt. Delete all other python paths present in txt file. only your python.txt path should be present. 
+example path; C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe
+
+Add project folder as alias to httpd.conf in appache.
 
