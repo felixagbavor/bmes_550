@@ -40,3 +40,6 @@ example path; C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.ex
 
 Add project folder as alias to httpd.conf in appache.
 
+open ct_ui.php on localhost to view upload page. 
+if the project alias is prjfolder, then open localhost/prjfolder/public/ct_ui.php
+
