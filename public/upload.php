@@ -17,7 +17,6 @@ if(isset($_POST["submit"])) {
         $output = call_image_processor($temp_path,$username);
         header("Location: results.php?username=".$username."&previous=".$previous."&files=".$output);
     }
-    
 }
 
 ?>

@@ -22,15 +22,6 @@
             display:flex;
         }
     </style>
-<script>
-    function validateForm() {
-        var x = document.forms["new_user_form"]["new_user"].value;
-        if (x == "") {
-            alert("Name must be filled out");
-            return false;
-        }
-    }
-</script>
 
 <?php
 		include "../backend.php";
@@ -40,62 +31,58 @@
         $db = new PDO("sqlite:$dbfile");
 		$table = "images";
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		$users = list_distinct_users($pdo=$db,$table_name=$table);
+        $users = list_distinct_users($pdo=$db,$table_name=$table);
+        
 ?>
+
+<script>
+    function containsSpecialCharacters(str){
+        var regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+        return regex.test(str);
+    }
+
+    function validateForm() {
+        var x = document.forms["myform"]["user_name"].value;
+        var array_users = <?php echo json_encode($users); ?>;
+        array_users[0]
+        var arr = [];
+        for (var i =0;i<array_users.length;i++){
+            arr.push(array_users[i][0])
+        }
+        var prev = document.forms["myform"]["previous_results"].checked;
+    
+        console.log(arr[x])
+
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+        else if(containsSpecialCharacters(x)){
+            alert("user name cannot contain any special characters");
+            return false
+        }
+        else if(!arr.includes(x) && prev){
+            alert("username doesnt exists");
+            return false;
+        }
+    }
+
+
+</script>
+
 </head>
 <body>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <label>Select User: </label>
-		<select name="user_name" id="users">
-			<?php
-				foreach($users as $u):
-					echo "<html>
-					<option value=$u[0]>$u[0]</option>
-					</html>
-					";
-				endforeach;
-				echo "</select>";
-			?>
-		
-
-
-		  <!-- Trigger the modal with a button -->
-		  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add User</button><br></br>
-
+    <form name="myform" action="upload.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <label>Enter username</label>
+		<input name="user_name" required minlength="4"><br><br>
         <label>retrieve previous results?</label>
-        <input type="checkbox" id="retrieve" name="previous_results"><br><br>
+        <input type="checkbox" id="retrieve" name="previous_results"/><br/><br/>
         <input type='file' id="image" name="myfile" required/>
-		
-        <input type="submit" value="submit" name="submit">
+        <input type="submit" value="submit" name="submit" />
     </form>
-
     
-    
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <form name="new_user_form" action="" onsubmit="return validateForm()">
-            <div class="modal-dialog">
-            <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add New User</h4>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" name="new_user" id="new_user" min=4>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-default" value="Add User">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>      
-                </div>          
-            </div>
-        </form>  
-    </div>
-    
-        
 <script>
     var chbox = document.getElementById("retrieve");
     chbox.addEventListener("click",function(event){
