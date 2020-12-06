@@ -4,7 +4,7 @@
 include "../backend.php";
 $uploads_dir = '../temp_uploads';
 if(isset($_POST["submit"])) {
-    $username = $_POST["user_name"];
+    $username = strtolower($_POST["user_name"]);
     $tmp_name = $_FILES["myfile"]["tmp_name"];
     $name = basename($_FILES["myfile"]["name"]);
     $previous = 0;
