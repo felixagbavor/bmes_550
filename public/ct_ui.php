@@ -62,7 +62,7 @@
         else if(!arr.includes(x) && prev){
             alert("Error: username doesnt exists");
             return false;
-        } else if(document.forms["myform"]["myfile"].value.split('.').pop().toLowerCase() != "dcm"){
+        } else if(document.forms["myform"]["myfile"].value.split('.').pop().toLowerCase() != "dcm" && !prev){
             alert("Error: only .dcm files allowed");
             return false;
         }
