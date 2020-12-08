@@ -2,7 +2,7 @@
 # Matthew Falcione
 
 # TODO: find BMES tempdir using php
-$dbfile=__DIR__.'/test.sqlite'; # if you are using a large database file (> 10 MB), please keep it elsewhere on your computer.
+$dbfile=__DIR__.'/image_db.sqlite'; # if you are using a large database file (> 10 MB), please keep it elsewhere on your computer.
 
 # create processed image directory if missing
 if (!file_exists('Processed_Files/')) {
@@ -84,7 +84,7 @@ $content = file('..\pythonexe.txt');
 $python = platformSlashes($content[0]);
 
 function call_image_processor($img_path,$username){
-    $dbfile=__DIR__.'/test.sqlite';
+    $dbfile=__DIR__.'/image_db.sqlite';
     
     $db = new PDO("sqlite:$dbfile");
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

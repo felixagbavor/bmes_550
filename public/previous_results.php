@@ -7,7 +7,7 @@
 <body >
     <?php
         include "../backend.php";
-        $dbfile='../test.sqlite'; 
+        $dbfile='../image_db.sqlite'; 
         ####################################################
         # create database connection
         $db = new PDO("sqlite:$dbfile");
