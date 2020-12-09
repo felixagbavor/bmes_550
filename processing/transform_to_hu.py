@@ -1,5 +1,5 @@
 # Felix Agbavor
-
+# transform CT image to hounsfied unit
 import numpy as np
 
 def transform_to_hu(medical_image):

@@ -1,4 +1,5 @@
 # Felix Agbavor
+# remove noise and make a lung mask for original image 
 
 import numpy as np
 from skimage import measure, morphology
@@ -8,11 +9,11 @@ def segment_lung_mask(img, display=False):
     row_size= img.shape[0]
     col_size = img.shape[1]
     
+    # normalization
     mean = np.mean(img)
     std = np.std(img)
     img = img-mean
     img = img/std
-
     middle = img[int(col_size/5):int(col_size/5*4),int(row_size/5):int(row_size/5*4)] 
     mean = np.mean(middle)  
     max = np.max(img)

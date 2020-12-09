@@ -8,7 +8,7 @@
     <?php
         include "../backend.php";
         $dbfile='../image_db.sqlite'; 
-        ####################################################
+        
         # create database connection
         $db = new PDO("sqlite:$dbfile");
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

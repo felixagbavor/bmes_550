@@ -1,15 +1,13 @@
-title: Ppulmonary Fibrosis CT Image augmentation
+title: Pulmonary Fibrosis CT Image augmentation
 author: Felix Agbavor, Matthew Falcione, Victor Flamini
-abstract: Each of the additional lines of the abstract should be indented with 2 spaces.
-  The abstract should be ASCII-only, e.g., if you copy-paste from Word, replace smart-quotes
-  with regular quotes. Replace non-ASCII special characters and symbols with ASCII characters.
-  Human Gut Microbiome contains collection of diverse species which help carry
-  out various functions for the proper functioning of the human body. However, IBD
-  is a condition where the diversity of this microbiome is significantly altered.
-  Little is known about the causes and effects of these variations in the present
-  literature. The next generation sequencing techniques provide suitable data for
-  Metagenomic analysis leading to identification of uncluttered microorganisms, and
-  make it possible to get detailed functional insights into the functional footprint
-  of these altered microorganisms. This study uses of KEGG pathways for mapping functionality
-  of the diverse gene sets in order to better understand function level changes caused
-  due to the altered microbiome in case of IBD.
+abstract: With the recent advances in computational image processing, 
+  rapid imaging-based diagnosis is possible. Diseases such as pulmonary fibrosis, 
+  which have traditionally been identified by clinicians examining numerous patient 
+  CT scans, can now be aided by computer analysis to reach a diagnosis more rapidly 
+  and accurately. The project implemented a PHP, HTML, and CSS web front-end for 
+  potential users to upload files and retrieve previously processed images. 
+  The imaging script, written in python, can also be extended in later interactions 
+  with predictive models that forecast lung function decline. 
+  The processed image paths along with the upload date and time and 
+  the corresponding user are stored in a SQLite database for comparing 
+  disease progression in patients across multiple scans.

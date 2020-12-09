@@ -1,8 +1,8 @@
 <?php
 # Matthew Falcione
 
-# TODO: find BMES tempdir using php
-$dbfile=__DIR__.'/image_db.sqlite'; # if you are using a large database file (> 10 MB), please keep it elsewhere on your computer.
+
+$dbfile=__DIR__.'/image_db.sqlite';
 
 # create processed image directory if missing
 if (!file_exists('Processed_Files/')) {
@@ -55,7 +55,6 @@ function check_user_in_db($pdo, $table_name, $user) {
 }
 
 # retrieve all distinct users
-// list_distinct_users
 function list_distinct_users($pdo, $table_name) {
     create_db_table_if_not_exist($pdo, $table_name);
     $result = $pdo->query("SELECT DISTINCT user FROM '$table_name'")->fetchAll();
@@ -104,10 +103,5 @@ function call_image_processor($img_path,$username){
 
     return $output;
 }
-
-
-// function to retrieve name and list of corresponding values in table
-// returns a list of DISTINCT names if the name is not found in the table
-
 
 ?>
