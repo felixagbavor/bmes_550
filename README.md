@@ -38,9 +38,11 @@ Alternatively one can install all the required packages by running the pip comma
 - **Delete** all other python paths present in pythonexe.txt file. Only your python.txt path should be present. 
 - Example path: C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe
 
-Add the **project folder** as an alias to **httpd.conf** in appache. Click [here](https://serverfault.com/questions/7323/httpd-conf-and-setting-up-an-alias) to learn about adding aliases in apache.
+---
 
-**open ct_ui.php on localhost to view upload page.** 
+- Add the **project folder** as an alias to **httpd.conf** in appache. Click [here](https://serverfault.com/questions/7323/httpd-conf-and-setting-up-an-alias) to learn about adding aliases in apache.
+
+- **Open ct_ui.php on localhost to view upload page.** 
 If the project alias is prjfolder, then open `localhost/prjfolder/public/ct_ui.php`.
 
 ### Database Fields
