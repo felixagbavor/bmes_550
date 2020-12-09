@@ -1,13 +1,12 @@
 title: Pulmonary Fibrosis CT Image augmentation
 author: Felix Agbavor, Matthew Falcione, Victor Flamini
-abstract: With the recent advances in computational image processing, 
-  rapid imaging-based diagnosis is possible. Diseases such as pulmonary fibrosis, 
-  which have traditionally been identified by clinicians examining numerous patient 
-  CT scans, can now be aided by computer analysis to reach a diagnosis more rapidly 
-  and accurately. The project implemented a PHP, HTML, and CSS web front-end for 
-  potential users to upload files and retrieve previously processed images. 
-  The imaging script, written in python, can also be extended in later interactions 
-  with predictive models that forecast lung function decline. 
-  The processed image paths along with the upload date and time and 
-  the corresponding user are stored in a SQLite database for comparing 
-  disease progression in patients across multiple scans.
+abstract: With the recent advances in computational image processing,
+rapid imaging-based diagnosis is possible. Diseases such as pulmonary fibrosis,
+which have traditionally been identified by clinicians examining numerous
+patient CT scans, can now be aided by computer analysis to reach a diagnosis
+more rapidly and accurately. The project implemented a PHP, HTML, and CSS web front-end
+for potential users to upload files and retrieve previously processed images.
+The imaging script, written in python, can also be extended in later interactions
+with predictive models that forecast lung function decline. The processed image paths
+along with the upload date and time and the corresponding user are stored in a SQLite
+database for comparing disease progression in patients across multiple scans.

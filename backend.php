@@ -24,16 +24,15 @@ function create_db_table_if_not_exist($pdo, $table_to_create){
     )");
 }
 
-//  adds entry to table
+#  adds entry to table
 function add_entry_to_table($pdo, $table_name, $user, $file_id, $upload_datetime) {
     $pdo->exec("INSERT INTO '$table_name'(user, file_id, upload_datetime) VALUES ('$user', '$file_id', '$upload_datetime')");
 }
 
-// checks if value already in table and adds it if not, returns a message if value found in table
+# checks if value already in table and adds it if not, returns a message if value found in table
 function check_duplicate_value_and_add($pdo, $table_name, $user, $file_id, $upload_datetime) {
     $result = $pdo->query("SELECT * FROM '$table_name' WHERE user='$user' AND file_id='$file_id'")->fetch();
     if (boolval($result)){
-        echo 'Value already in database.'."<br>";
         return TRUE;
     } else {
         add_entry_to_table($pdo=$pdo, $table_name=$table_name, $user=$user, $file_id=$file_id, $upload_datetime=$upload_datetime);
@@ -43,7 +42,6 @@ function check_duplicate_value_and_add($pdo, $table_name, $user, $file_id, $uplo
 
 # retieve all values that match a user
 function retrieve_user_images($pdo, $table_name, $user) {
-    
     $result = $pdo->query("SELECT * FROM '$table_name' WHERE user='$user'")->fetchAll();
     return $result;
 }
@@ -68,12 +66,12 @@ function lookup_past_results($table_name, $user) {
         $result = retrieve_user_images($pdo=$pdo, $table_name=$table_name, $user=$user);
         return $result;
     } else {
-        echo 'Sorry, no users match the input. Below is a list of all unique users in the table.'."<br>";
         $result = list_distinct_users($pdo=$pdo, $table_name=$table_name);
         return $result;
     }
 }
 
+# insert correct directory separator in path
 function platformSlashes($path) {
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
@@ -82,7 +80,8 @@ function platformSlashes($path) {
 $content = file('..\pythonexe.txt');
 $python = platformSlashes($content[0]);
 
-function call_image_processor($img_path,$username){
+# call python image function
+function call_image_processor($img_path, $username){
     $dbfile=__DIR__.'/image_db.sqlite';
     
     $db = new PDO("sqlite:$dbfile");
