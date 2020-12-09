@@ -18,7 +18,6 @@ This table will hold the file paths to each of the uploaded and processed files.
 - **temp_uploads:** this is a temp data directory which stores the original uploaded file and is removed after the web app is done using the file.
 - **Test Data:** This contains test CT images new developers/programmers can use for testing the web app.
 
-
 ### Install Project Dependecies
 The project is dependent on the following python packages:
 
@@ -42,21 +41,9 @@ Add the **project folder** as an alias to **httpd.conf** in appache. Click [here
 **open ct_ui.php on localhost to view upload page.** 
 if the project alias is prjfolder, then open localhost/prjfolder/public/ct_ui.php
 
-
 ### Database Fields
 
-user VARCHAR(30) - if the user cannot be found, return a list of all unique users (not suitable for large number of users)
-file_id VARCHAR(30) - might need to replace some of the symbols to work with file systems
-upload_datetime DATETIME - stored as text or integer so will need to use the date and time functions to convert and display them
-Primary Key - (user, file_id)
-
-### Other Information
-
-A parameterized query is a query in which placeholders are used for parameters and the parameter values are supplied at execution time.
-Why use Parameterized Query
-The most important reason to use parameterized queries is to avoid SQL injection attacks.
-Secondly parameterized query takes care of scenario where sql query might fail for e.g. inserting of O'Baily in a field.
-Parameterized query handels such query without forcing you to replace single quotes with double single quotes.
-pendingDeletions = new SQLiteCommand(@"DELETE FROM [centres] WHERE [name] = $name", conn);
-
-
+- user VARCHAR(30) - user uploading or retrieving images
+- file_id VARCHAR(50) - name of file uploaded by the user
+- upload_datetime TEXT - date and time of file upload
+- PRIMARY KEY (user, file_id)
