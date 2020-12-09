@@ -1,6 +1,7 @@
 # Project
-This is an image analysis project with the prime aim of augmenting CT image scans of pulmonary fibrosis so as to make the CT images 'ready' for machine learning classification. Augmentation of the image we believe can help current doctors to diagnosis the disease easily as Chest CT scans in their generic form are hard to read by doctors. The project will consist of a web interface for users to upload chest CT scans where they are processed and the augmented image shown on a results page. the users can always come back to check previous processed images as they will be stored in a table. 
-This table will hold the file paths to each of the uploaded and processed files. The files will be grouped by a username field that can be used to retrieve a set of file paths. The username and file name (will need to append the data directory path) will be passed by the user and into a php script that will call the the update/select statments. There will be no way of dropping the files after uploading, but there will be a date and time field that will allow for sorting.
+This is an image analysis project with the objective of augmenting CT image scans of pulmonary fibrosis to make them 'ready' for machine learning classification or other computational analysis. Augmentation of the image can help clinicians more easily diagnosis the disease as chest CT scans in their original form are hard to read. The project will consist of a web interface for users to upload chest CT scans which are then processed and shown on a results page.
+
+The users can retrieve previously processed images, whose file paths are stored in a SQLite database along with the upload date and time and the user. The files are grouped by a username field that can be used to retrieve a user's uploads. The username and file name will be passed by the user into a PHP script that will call the the update/select statements. There will be no way of dropping the files after uploading, but there will be a date and time field that will allow for sorting.
 
 ### Project Files
 - **ct_ui.php:** this is the main web interface that the user sees. it has a form for uploading and retrival of CT images. 
@@ -33,17 +34,18 @@ Alternatively one can install all the required packages by running the pip comma
 
 ### Runing the Code
 
-Add your full **python.exe path** to **pythonexe.txt** file. **Delete** all other python paths present in pythonexe.txt file. only your python.txt path should be present. 
-example path: C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe
+- Add your full **python.exe path** to **pythonexe.txt** file.
+- **Delete** all other python paths present in pythonexe.txt file. Only your python.txt path should be present. 
+- Example path: C:/Users/agbav/AppData/Local/Programs/Python/Python38-32/python.exe
 
 Add the **project folder** as an alias to **httpd.conf** in appache. Click [here](https://serverfault.com/questions/7323/httpd-conf-and-setting-up-an-alias) to learn about adding aliases in apache.
 
 **open ct_ui.php on localhost to view upload page.** 
-if the project alias is prjfolder, then open localhost/prjfolder/public/ct_ui.php
+If the project alias is prjfolder, then open `localhost/prjfolder/public/ct_ui.php`.
 
 ### Database Fields
 
-- user VARCHAR(30) - user uploading or retrieving images
-- file_id VARCHAR(50) - name of file uploaded by the user
-- upload_datetime TEXT - date and time of file upload
-- PRIMARY KEY (user, file_id)
+- `user VARCHAR(30)` - user uploading or retrieving images
+- `file_id VARCHAR(50)` - name of file uploaded by the user
+- `upload_datetime TEXT` - date and time of file upload
+- `PRIMARY KEY (user, file_id)`
